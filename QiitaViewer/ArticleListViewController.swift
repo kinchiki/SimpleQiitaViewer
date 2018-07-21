@@ -13,6 +13,7 @@ import SwiftyJSON
 class ArticleListViewController: UIViewController {
     let END_POINT: String = "https://qiita.com/api/v2/items"
     let table = UITableView()
+    var articles: [[String: String?]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,14 @@ class ArticleListViewController: UIViewController {
             case .success(let value):
                 let json_value = JSON(value)
                 json_value.forEach { (_, json) in
-                    print(json["title"])
-                    print(json["user"]["id"])
+                    let article: [String: String?] = [
+                        "title": json["title"].string,
+                        "userId": json["user"]["id"].string
+                    ]
+                    self.articles.append(article)
+                    print(article)
                 }
+//                print(self.articles)
 
             case .failure(let error):
                 print(error)
