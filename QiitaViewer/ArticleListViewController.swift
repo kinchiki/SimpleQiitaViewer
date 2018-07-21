@@ -9,9 +9,13 @@
 import UIKit
 
 class ArticleListViewController: UIViewController {
+    let table = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "new article"
 
+        table.frame = view.frame
+        view.addSubview(table)
     }
 }
