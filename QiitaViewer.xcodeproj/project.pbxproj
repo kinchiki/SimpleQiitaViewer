@@ -12,6 +12,8 @@
 		08E2AB2921031AB500912B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E2AB2721031AB500912B3D /* Main.storyboard */; };
 		08E2AB2B21031AB800912B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E2AB2A21031AB800912B3D /* Assets.xcassets */; };
 		08E2AB2E21031AB800912B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E2AB2C21031AB800912B3D /* LaunchScreen.storyboard */; };
+		08F394B021033692004EA341 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F394AE21033692004EA341 /* Alamofire.framework */; };
+		08F394B121033692004EA341 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F394AF21033692004EA341 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		08E2AB2A21031AB800912B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08E2AB2D21031AB800912B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08E2AB2F21031AB800912B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08F394AE21033692004EA341 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		08F394AF21033692004EA341 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08F394B021033692004EA341 /* Alamofire.framework in Frameworks */,
+				08F394B121033692004EA341 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,7 @@
 			children = (
 				08E2AB2221031AB500912B3D /* QiitaViewer */,
 				08E2AB2121031AB500912B3D /* Products */,
+				08F394AD21033692004EA341 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,15 @@
 			path = QiitaViewer;
 			sourceTree = "<group>";
 		};
+		08F394AD21033692004EA341 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08F394AE21033692004EA341 /* Alamofire.framework */,
+				08F394AF21033692004EA341 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +90,7 @@
 				08E2AB1C21031AB500912B3D /* Sources */,
 				08E2AB1D21031AB500912B3D /* Frameworks */,
 				08E2AB1E21031AB500912B3D /* Resources */,
+				08F394B2210336A6004EA341 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,6 +146,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08F394B2210336A6004EA341 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		08E2AB1C21031AB500912B3D /* Sources */ = {
@@ -281,6 +318,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QiitaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -298,6 +339,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QiitaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
