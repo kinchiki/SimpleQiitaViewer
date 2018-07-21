@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ArticleListViewController: UIViewController {
     let END_POINT: String = "https://qiita.com/api/v2/items"
@@ -25,8 +26,14 @@ class ArticleListViewController: UIViewController {
     func getArticles() {
         Alamofire.request(END_POINT, method: .get).responseJSON { response in
             switch response.result {
+
             case .success(let value):
-                print(value)
+                let json_value = JSON(value)
+                json_value.forEach { (_, json) in
+                    print(json["title"])
+                    print(json["user"]["id"])
+                }
+
             case .failure(let error):
                 print(error)
             }
