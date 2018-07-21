@@ -44,19 +44,22 @@ class ArticleListViewController: UIViewController, UITableViewDataSource {
             switch response.result {
 
             case .success(let value):
-                let json_value = JSON(value)
-                json_value.forEach { (_, json) in
-                    let article: [String: String?] = [
-                        "title": json["title"].string,
-                        "userId": json["user"]["id"].string
-                    ]
-                    self.articles.append(article)
-                }
+                self.appendJsonToArticle(json_value: JSON(value))
                 self.table.reloadData()
 
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+
+    func appendJsonToArticle(json_value: JSON) {
+        json_value.forEach { (_, json) in
+            let article: [String: String?] = [
+                "title": json["title"].string,
+                "userId": json["user"]["id"].string
+            ]
+            articles.append(article)
         }
     }
 }
